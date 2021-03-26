@@ -3,6 +3,9 @@ package demoblaze;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,12 +15,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.FileReader;
+import java.util.Iterator;
+
 public class StepDefinitions {
 
     private WebDriver driver;
     private WebDriverWait wait;
     private boolean acceptNextAlert = true;
-    private String strUsername = "UserDemoBlase0009";
+    private String strUsername = "UserDemoBlase0015";
     private String strPassword = "53cur1ty.P4s5";
     private String productSelected = "MacBook air";
 
@@ -67,8 +73,8 @@ public class StepDefinitions {
     public void Add_a_laptop_to_the_cart(){
         driver.findElement(By.xpath("//*[@id='itemc'][2]")).click();
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("MacBook air")));
-        driver.findElement(By.linkText("MacBook air")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(productSelected)));
+        driver.findElement(By.linkText(productSelected)).click();
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Add to cart")));
         driver.findElement(By.linkText("Add to cart")).click();
@@ -128,4 +134,5 @@ public class StepDefinitions {
             acceptNextAlert = true;
         }
     }
+
 }
